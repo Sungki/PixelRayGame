@@ -1,8 +1,9 @@
-#define PUNITY_IMPLEMENTATION
 #include "PixelRay.h"
+#include <iostream>
 
-int x = 0;
-int y = 0;
+#define M_PI           3.14159265358979323846
+
+float it = 0;
 
 int init()
 {
@@ -13,10 +14,16 @@ void step()
 {
 	canvas_clear(1);
 
-	pixel_draw(x++, y, 3);
-	if (x >= 300)
-	{
-		x = 0;
-		y++;
-	}
+    for (int i = 0; i < 300; i++)
+    {
+        float dst = (i / (300 - 1.0f)) * 90;
+        float angle = 2 * M_PI * it * i;
+
+        float x = dst * std::cos(angle);
+        float y = dst * std::sin(angle);
+
+        pixel_draw(x + 150, y + 100, 3);
+    }
+
+    it = it + 0.00001;
 }
