@@ -5,7 +5,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 
-#define PUNITY_COLOR_CHANNELS b, g, r, a
+#define PIXEL_COLOR_CHANNELS b, g, r, a
 
 typedef unsigned int uint;
 typedef uint8_t   u8;
@@ -40,7 +40,6 @@ typedef ptrdiff_t isize;
 #define megabytes(n) (1024*kilobytes(n))
 #define gigabytes(n) (1024*megabytes(n))
 
-#define PUNITY_COLOR_CHANNELS b, g, r, a
 #define PUNITY_STACK_CAPACITY megabytes(16)
 #define PUNITY_STORAGE_CAPACITY megabytes(16)
 
@@ -62,7 +61,7 @@ void* bank_push(Bank* bank, u32 size);
 
 typedef union {
     struct {
-        u8 PUNITY_COLOR_CHANNELS;
+        u8 PIXEL_COLOR_CHANNELS;
     };
     u32 rgba;
 } Color;
@@ -78,6 +77,35 @@ Color color_make(u8 r, u8 g, u8 b, u8 a)
     c.a = a;
     return c;
 }
+
+typedef union
+{
+    struct {
+        i32 min_x;
+        i32 min_y;
+        i32 max_x;
+        i32 max_y;
+    };
+    struct {
+        i32 left;
+        i32 top;
+        i32 right;
+        i32 bottom;
+    };
+    i32 E[4];
+} Rect;
+
+#define rect_tr(r, tx, ty) \
+    (r)->min_x += tx; \
+    (r)->min_y += ty; \
+    (r)->max_x += tx; \
+    (r)->max_y += ty;
+
+#define rect_width(r) \
+    ((r)->max_x - (r)->min_x)
+
+#define rect_height(r) \
+    ((r)->max_y - (r)->min_y)
 
 typedef struct {
     int begin;
@@ -103,6 +131,7 @@ typedef struct {
     Bitmap* bitmap;
     i32 translate_x;
     i32 translate_y;
+    Rect clip;
 } Canvas;
 
 typedef struct Window_ {
@@ -180,9 +209,55 @@ void bitmap_clear(Bitmap* bitmap, u8 color)
     memset(bitmap->pixels, color, bitmap->width * bitmap->height);
 }
 
-void pixel_draw(i32 x, i32 y, u8 color)
+void rect_intersect(Rect* R, Rect* C)
+{
+    R->min_x = minimum(C->max_x, maximum(R->min_x, C->min_x));
+    R->min_y = minimum(C->max_y, maximum(R->min_y, C->min_y));
+    R->max_x = maximum(C->min_x, minimum(R->max_x, C->max_x));
+    R->max_y = maximum(C->min_y, minimum(R->max_y, C->max_y));
+}
+
+void rect_draw(Rect r, u8 color)
+{
+    rect_tr(&r, CORE->canvas.translate_x, CORE->canvas.translate_y);
+    rect_intersect(&r, &CORE->canvas.clip);
+    if (r.max_x > r.min_x && r.max_y > r.min_y)
+    {
+        u32 canvas_pitch = CORE->canvas.bitmap->width;
+        u8* row = CORE->canvas.bitmap->pixels + r.min_x + (r.min_y * canvas_pitch);
+        i32 w = r.max_x - r.min_x;
+        while (r.max_y != r.min_y)
+        {
+            memset(row, color, w);
+            row += canvas_pitch;
+            r.max_y--;
+        }
+    }
+}
+
+bool rect_contains_point(Rect rect, i32 x, i32 y)
+{
+    return (x >= rect.min_x && x < rect.max_x&&
+        y >= rect.min_y && y < rect.max_y);
+}
+
+void canvas_clear(u8 color)
+{
+    rect_draw(CORE->canvas.clip, color);
+}
+
+void pixel_draw_(i32 x, i32 y, u8 color)
 {
     *(CORE->canvas.bitmap->pixels + x + (y * CORE->canvas.bitmap->width)) = color;
+}
+
+void pixel_draw(i32 x, i32 y, u8 color)
+{
+    x += CORE->canvas.translate_x;
+    y += CORE->canvas.translate_y;
+    if (rect_contains_point(CORE->canvas.clip, x, y)) {
+        pixel_draw_(x, y, color);
+    }
 }
 
 void* virtual_reserve(void* ptr, u32 size)

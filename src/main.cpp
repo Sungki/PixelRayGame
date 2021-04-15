@@ -11,6 +11,8 @@ int init()
 
 void step()
 {
+	canvas_clear(1);
+
 	pixel_draw(x++, y, 3);
 	if (x >= 300)
 	{
