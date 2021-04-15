@@ -1,7 +1,5 @@
 #include "PixelRay.h"
 #include <iostream>
-#include <thread>
-#include <chrono>
 
 #define M_PI           3.14159265358979323846
 
@@ -28,6 +26,4 @@ void step()
     }
 
     it = it + 0.00001;
-
-    std::this_thread::sleep_for(std::chrono::milliseconds(1));
 }
