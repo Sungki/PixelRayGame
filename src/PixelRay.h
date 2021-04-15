@@ -217,6 +217,29 @@ void rect_intersect(Rect* R, Rect* C)
     R->max_y = maximum(C->min_y, minimum(R->max_y, C->max_y));
 }
 
+Rect rect_make(i32 min_x, i32 min_y, i32 max_x, i32 max_y)
+{
+    Rect r;
+    r.min_x = min_x;
+    r.min_y = min_y;
+    r.max_x = max_x;
+    r.max_y = max_y;
+    return r;
+}
+
+Rect rect_make_size(i32 x, i32 y, i32 w, i32 h)
+{
+    Rect r = rect_make(x, y, x + w, y + h);
+    return r;
+}
+
+void clip_set(Rect rect)
+{
+    Rect canvas_rect = rect_make_size(0, 0, CORE->canvas.bitmap->width, CORE->canvas.bitmap->height);
+    rect_intersect(&rect, &canvas_rect);
+    CORE->canvas.clip = rect;
+}
+
 void rect_draw(Rect r, u8 color)
 {
     rect_tr(&r, CORE->canvas.translate_x, CORE->canvas.translate_y);
@@ -243,20 +266,21 @@ bool rect_contains_point(Rect rect, i32 x, i32 y)
 
 void canvas_clear(u8 color)
 {
-    rect_draw(CORE->canvas.clip, color);
-}
-
-void pixel_draw_(i32 x, i32 y, u8 color)
-{
-    *(CORE->canvas.bitmap->pixels + x + (y * CORE->canvas.bitmap->width)) = color;
+    memset(CORE->canvas.bitmap->pixels, color, CORE->canvas.bitmap->width * CORE->canvas.bitmap->height);
+//    rect_draw(CORE->canvas.clip, color);
 }
 
 void pixel_draw(i32 x, i32 y, u8 color)
 {
+    *(CORE->canvas.bitmap->pixels + x + (y * CORE->canvas.bitmap->width)) = color;
+}
+
+void pixel_draw_1(i32 x, i32 y, u8 color)
+{
     x += CORE->canvas.translate_x;
     y += CORE->canvas.translate_y;
     if (rect_contains_point(CORE->canvas.clip, x, y)) {
-        pixel_draw_(x, y, color);
+        pixel_draw(x, y, color);
     }
 }
 
