@@ -19,10 +19,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Engine\Platform\Platform.WinPC\WindowsCommon.h" />
     <ClInclude Include="src\PixelRay.h" />
+    <ClInclude Include="src\Engine\Platform\Platform.WinPC\WinPCPlatformApplication.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Engine\Platform\Platform.WinPC\WinPCPlatformApplication.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
