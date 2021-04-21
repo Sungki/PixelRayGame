@@ -27,7 +27,7 @@ namespace PixelRay
 				bool						m_isRunning;
 
 			private:
-				void _InitializeGameWindow()
+				void _InitializeGameWindow(HINSTANCE hInstance, int nCmdShow, LPCTSTR className, LPCTSTR windowName, HICON hIcon, HICON hIconSm, int windowWidth, int windowHeight)
 					noexcept(false);
 
 
