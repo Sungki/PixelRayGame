@@ -1,5 +1,7 @@
 #include "WinPCPlatformApplication.h"
 
+#include "Window/WindowCreateParam.h"
+
 namespace PixelRay
 {
 	namespace Platform
@@ -16,11 +18,12 @@ namespace PixelRay
 
 			WinPCPlatformApplication::~WinPCPlatformApplication()
 			{
+//				m_glView = nullptr;
 			}
 
 			void WinPCPlatformApplication::_InitializeGameWindow(HINSTANCE hInstance, int nCmdShow, LPCTSTR className, LPCTSTR windowName, HICON hIcon, HICON hIconSm, int windowWidth, int windowHeight)
 			{
-
+//				WindowCreatePa
 			}
 		}
 	}
