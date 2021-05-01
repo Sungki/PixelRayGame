@@ -8,7 +8,7 @@
 #include "../WindowsCommon.h"
 
 
-namespace Leggiero
+namespace PixelRay
 {
 	namespace Platform
 	{

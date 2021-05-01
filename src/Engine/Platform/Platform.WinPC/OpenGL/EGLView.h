@@ -2,10 +2,27 @@
 
 #include "../WindowsCommon.h"
 
-class EGLView
+namespace PixelRay
 {
-public:
-	EGLView(const HWND& windowHWnd);
-	virtual ~EGLView();
-};
+	namespace Platform
+	{
+		namespace Windows
+		{
+			namespace Graphics
+			{
+				class EGLView
+				{
+				public:
+					EGLView(const HWND& windowHWnd);
+					virtual ~EGLView();
+
+				public:
+					void SwapBuffers();
+
+				private:
+				};
+			}
+		}
+	}
+}
 

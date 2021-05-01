@@ -23,7 +23,28 @@ namespace PixelRay
 
 			void WinPCPlatformApplication::_InitializeGameWindow(HINSTANCE hInstance, int nCmdShow, LPCTSTR className, LPCTSTR windowName, HICON hIcon, HICON hIconSm, int windowWidth, int windowHeight)
 			{
-//				WindowCreateParam param;
+				WindowCreateParam windowParam;
+				windowParam.className = className;
+
+				windowParam.hInstance = hInstance;
+
+				windowParam.nCmdShow = nCmdShow;
+
+				windowParam.hIcon = hIcon;
+				windowParam.hIconSm = hIconSm;
+
+				windowParam.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
+
+				windowParam.windowName = windowName;
+				windowParam.windowStyle = WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | WS_MINIMIZEBOX | WS_BORDER
+					| WS_CLIPSIBLINGS | WS_CLIPCHILDREN; // for EGL
+
+				windowParam.width = windowWidth;
+				windowParam.height = windowHeight;
+				windowParam.isSetContentsSize = true;
+
+//				m_gameWindow.reset(new Window(windowParam));
+//				m_gameWindow->SetMessageObserver(this);
 			}
 
 			void WinPCPlatformApplication::_InitializeEGLView()
