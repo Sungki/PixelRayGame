@@ -19,12 +19,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Engine\Platform\Platform.WinPC\OpenGL\EGLView.h" />
     <ClInclude Include="src\Engine\Platform\Platform.WinPC\WindowsCommon.h" />
     <ClInclude Include="src\Engine\Platform\Platform.WinPC\Window\WindowCreateParam.h" />
     <ClInclude Include="src\PixelRay.h" />
     <ClInclude Include="src\Engine\Platform\Platform.WinPC\WinPCPlatformApplication.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Engine\Platform\Platform.WinPC\OpenGL\EGLView.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Engine\Platform\Platform.WinPC\WinPCPlatformApplication.cpp" />
   </ItemGroup>
