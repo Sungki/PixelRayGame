@@ -1,5 +1,7 @@
 #pragma once
 
+//#include <EGL/egl.h>
+
 #include "../WindowsCommon.h"
 
 namespace PixelRay
