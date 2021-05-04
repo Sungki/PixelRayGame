@@ -1,6 +1,6 @@
 #pragma once
 
-//#include <EGL/egl.h>
+#include <EGL/egl.h>
 
 #include "../WindowsCommon.h"
 
@@ -22,6 +22,9 @@ namespace PixelRay
 					void SwapBuffers();
 
 				private:
+					EGLDisplay m_eglDisplay;
+					EGLSurface m_eglSurface;
+					EGLContext m_eglContext;
 				};
 			}
 		}
