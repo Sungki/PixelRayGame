@@ -1,10 +1,8 @@
 #pragma once
 
 
-// Leggiero.Basic
 //#include <Basic/LeggieroBasic.h>
 
-// Leggiero.Platform.WinPC
 #include "../WindowsCommon.h"
 
 
