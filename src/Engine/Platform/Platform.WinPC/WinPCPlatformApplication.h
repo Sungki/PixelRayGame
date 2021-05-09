@@ -33,8 +33,8 @@ namespace PixelRay
 				void _InitializeEGLView()
 					noexcept(false);
 
-				void _InitializeApplicationComponent();
-				void _InitializeComponentAfterWindowCreation();
+//				void _InitializeApplicationComponent();
+//				void _InitializeComponentAfterWindowCreation();
 			};
 		}
 	}

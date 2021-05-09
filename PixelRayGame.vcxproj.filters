@@ -30,6 +30,9 @@
     <ClInclude Include="src\Engine\Platform\Platform.WinPC\OpenGL\EGLView.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Engine\Platform\Platform.WinPC\OpenGL\WinPCGLException.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -39,6 +42,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Engine\Platform\Platform.WinPC\OpenGL\EGLView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Engine\Platform\Platform.WinPC\OpenGL\WinPCGLException.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
