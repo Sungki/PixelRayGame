@@ -1,6 +1,6 @@
 #include "EGLView.h"
 
-//#include "WinPCGLException.h"
+#include "WinPCGLException.h"
 //#include "WinPCGLThreadContext.h"
 
 
@@ -17,7 +17,7 @@ namespace PixelRay
 					m_eglDisplay = eglGetDisplay(EGL_DEFAULT_DISPLAY);
 					if (m_eglDisplay == EGL_NO_DISPLAY)
 					{
-//						throw EGLViewCreateFailException(EGLViewCreateErrorType::kNoEGLDisplay, eglGetError());
+						throw EGLViewCreateFailException(EGLViewCreateErrorType::kNoEGLDisplay, eglGetError());
 					}
 
 					// Initialize the display
@@ -25,7 +25,7 @@ namespace PixelRay
 					EGLint minor = 0;
 					if (eglInitialize(m_eglDisplay, &major, &minor) == EGL_FALSE)
 					{
-//						throw EGLViewCreateFailException(EGLViewCreateErrorType::kDisplayInitializeFail, eglGetError());
+						throw EGLViewCreateFailException(EGLViewCreateErrorType::kDisplayInitializeFail, eglGetError());
 					}
 
 					// Check Supported Version
@@ -33,7 +33,7 @@ namespace PixelRay
 					{
 						// Does not support EGL 1.5
 						eglTerminate(m_eglDisplay);
-//						throw EGLViewCreateFailException(EGLViewCreateErrorType::kEGLVersionNotSupport, eglGetError());
+						throw EGLViewCreateFailException(EGLViewCreateErrorType::kEGLVersionNotSupport, eglGetError());
 					}
 
 					// Obtain the first configuration match
@@ -56,14 +56,14 @@ namespace PixelRay
 					if (eglChooseConfig(m_eglDisplay, attrs, &eglConfig, 1, &numConfig) == EGL_FALSE)
 					{
 						eglTerminate(m_eglDisplay);
-//						throw EGLViewCreateFailException(EGLViewCreateErrorType::kEGLConfigNotExists, eglGetError());
+						throw EGLViewCreateFailException(EGLViewCreateErrorType::kEGLConfigNotExists, eglGetError());
 					}
 
 					// Create a surface for the main window
 					m_eglSurface = eglCreateWindowSurface(m_eglDisplay, eglConfig, windowHWnd, NULL);
 					if (m_eglSurface == EGL_NO_SURFACE)
 					{
-//						throw EGLViewCreateFailException(EGLViewCreateErrorType::kSurfaceCreateFail, eglGetError());
+						throw EGLViewCreateFailException(EGLViewCreateErrorType::kSurfaceCreateFail, eglGetError());
 					}
 
 					// Create an OpenGL ES context
@@ -76,7 +76,7 @@ namespace PixelRay
 					{
 						eglDestroySurface(m_eglDisplay, m_eglSurface);
 						eglTerminate(m_eglDisplay);
-//						throw EGLViewCreateFailException(EGLViewCreateErrorType::kContextCreateFail, eglGetError());
+						throw EGLViewCreateFailException(EGLViewCreateErrorType::kContextCreateFail, eglGetError());
 					}
 
 					// Make the context and surface current
@@ -85,7 +85,7 @@ namespace PixelRay
 						eglDestroyContext(m_eglDisplay, m_eglContext);
 						eglDestroySurface(m_eglDisplay, m_eglSurface);
 						eglTerminate(m_eglDisplay);
-//						throw EGLViewCreateFailException(EGLViewCreateErrorType::kCurrentMakeFail, eglGetError());
+						throw EGLViewCreateFailException(EGLViewCreateErrorType::kCurrentMakeFail, eglGetError());
 					}
 
 //					FillMainEGLContextInformation(m_eglDisplay, m_eglSurface, m_eglContext);
