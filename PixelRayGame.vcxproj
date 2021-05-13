@@ -25,12 +25,14 @@
     <ClInclude Include="src\PixelRay.h" />
     <ClInclude Include="src\Engine\Platform\Platform.WinPC\WinPCPlatformApplication.h" />
     <ClInclude Include="src\Engine\Platform\Platform.WinPC\OpenGL\WinPCGLException.h" />
+    <ClInclude Include="src\Engine\Platform\Platform.WinPC\Window\Window.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Engine\Platform\Platform.WinPC\OpenGL\EGLView.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Engine\Platform\Platform.WinPC\WinPCPlatformApplication.cpp" />
     <ClCompile Include="src\Engine\Platform\Platform.WinPC\OpenGL\WinPCGLException.cpp" />
+    <ClCompile Include="src\Engine\Platform\Platform.WinPC\Window\Window.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
