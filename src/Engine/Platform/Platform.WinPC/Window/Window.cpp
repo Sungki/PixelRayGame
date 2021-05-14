@@ -8,7 +8,7 @@
 //#include <Utility/Sugar/Finally.h>
 
 #include "WindowCreateParam.h"
-//#include "WindowException.h"
+#include "WindowException.h"
 //#include "WindowMessage.h"
 
 
@@ -28,7 +28,7 @@ namespace PixelRay
 					WindowCreateParam			createParam;
 
 					std::atomic<bool>			isCreateSuccess;
-//					WindowCreateFailException	createFailInfo;
+					WindowCreateFailException	createFailInfo;
 
 //					WindowThreadFunctionArgs(const WindowThreadFunctionArgs& rhs)
 //						: _this(rhs._this), createParam(rhs.createParam), isCreateSuccess(rhs.isCreateSuccess.load()), createFailInfo(rhs.createFailInfo)
