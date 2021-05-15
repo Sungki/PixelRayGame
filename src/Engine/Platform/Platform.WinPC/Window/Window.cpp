@@ -236,7 +236,7 @@ namespace PixelRay
 				}
 			}
 
-/*			WindowCreateFailException::WindowCreateFailException(
+			WindowCreateFailException::WindowCreateFailException(
 				bool isClassRegisterFailed, bool isWindowCreateFailed,
 				DWORD lastError)
 				: std::exception("Failed to create window")
@@ -244,7 +244,7 @@ namespace PixelRay
 				, isWindowCreateFailed(isWindowCreateFailed)
 				, lastError(lastError)
 			{
-			}*/
+			}
 		}
 	}
 }
