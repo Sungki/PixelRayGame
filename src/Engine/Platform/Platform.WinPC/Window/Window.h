@@ -7,7 +7,7 @@
 //#include <Basic/LeggieroBasic.h>
 
 #include "../WindowsCommon.h"
-//#include "WindowEventObserver.h"
+#include "WindowEventObserver.h"
 
 
 namespace PixelRay

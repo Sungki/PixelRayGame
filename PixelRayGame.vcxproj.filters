@@ -39,6 +39,9 @@
     <ClInclude Include="src\Engine\Platform\Platform.WinPC\Window\WindowException.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Engine\Platform\Platform.WinPC\Window\WindowEventObserver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
