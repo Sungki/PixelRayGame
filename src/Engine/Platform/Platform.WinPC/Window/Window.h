@@ -22,12 +22,12 @@ namespace PixelRay
 			class Window
 			{
 			public:
-//				Window(const WindowCreateParam& createParam)
-//					noexcept(false)
-//					: Window(createParam, NULL) { }
+				Window(const WindowCreateParam& createParam)
+					noexcept(false)
+					: Window(createParam, NULL) { }
 
-//				Window(const WindowCreateParam& createParam, IWindowEventObserver* messageObserver)
-//					noexcept(false);
+				Window(const WindowCreateParam& createParam, IWindowEventObserver* messageObserver)
+					noexcept(false);
 
 				virtual ~Window();
 
