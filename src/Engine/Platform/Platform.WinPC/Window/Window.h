@@ -37,8 +37,8 @@ namespace PixelRay
 				bool					IsValidWindow() const { return m_isValidWindow; }
 				DWORD					GetWindowError() const { return m_lastError; }
 
-//				IWindowEventObserver* GetMessageObserver() const { return m_messageObserver; }
-//				void					SetMessageObserver(IWindowEventObserver* observer) { m_messageObserver = observer; }
+				IWindowEventObserver* GetMessageObserver() const { return m_messageObserver; }
+				void					SetMessageObserver(IWindowEventObserver* observer) { m_messageObserver = observer; }
 
 			private:
 				HWND					m_hWnd;
@@ -48,7 +48,7 @@ namespace PixelRay
 
 				bool					m_isTouchEnabled;
 
-//				IWindowEventObserver* m_messageObserver;
+				IWindowEventObserver* m_messageObserver;
 
 //				pthread_t* m_messageLoopThread;
 				HANDLE					m_createWaitEvent;
